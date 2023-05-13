@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Test page</title>
+
+		<script type="text/javascript" src="src/json-viewer.js"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="src/json-viewer.css">
+		<!--
+		https://www.dextools.io/shared/data/pair?address=0x35e462cd5adde02da41f7f49e156b91b62f9373f&chain=ether&audit=true
+		-->
+		<style id="dark-style" class="dr" type="text/css">@media screen {
+
+		/* Leading rule */
+		html {
+		  -webkit-filter: invert(100%) hue-rotate(180deg) brightness(125%) contrast(80%) sepia(20%) !important;
+		  filter: invert(100%) hue-rotate(180deg) brightness(125%) contrast(80%) sepia(20%) !important;
+		}
+
+		/* Reverse rule */
+		img,
+		video,
+		:not(object):not(body)>embed,
+		object,
+		svg image,
+		[style*="background:url"],
+		[style*="background-image:url"],
+		[style*="background: url"],
+		[style*="background-image: url"],
+		[background],
+		twitterwidget,
+		.sr-reader,
+		.sr-backdrop,
+		iframe:fullscreen,
+		[class="opinary-iframe"] {
+		  -webkit-filter: invert(100%) hue-rotate(180deg) !important;
+		  filter: invert(100%) hue-rotate(180deg) !important;
+		}
+		[style*="background:url"] *,
+		[style*="background-image:url"] *,
+		[style*="background: url"] *,
+		[style*="background-image: url"] *,
+		input,
+		[background] *,
+		img[src^="https://s0.wp.com/latex.php"],
+		twitterwidget .NaturalImage-image {
+		  -webkit-filter: none !important;
+		  filter: none !important;
+		}
+		.compatibility-with-darkreader-below-4-3-3 {
+		  background: white !important;
+		}
+
+		/* Font */
+		*:not(pre, pre *, code, .far, .fa, .glyphicon, [class*="vjs-"], .fab, .fa-github, .fas, .material-icons, .icofont, .typcn, mu, [class*="mu-"], .glyphicon, .icon) {
+		  font-family: Consolas !important;
+		}
+
+		/* Text contrast */
+		html {
+		  text-shadow: 0 0 0 !important;
+		}
+
+		/* Full screen */
+		:-webkit-full-screen, :-webkit-full-screen * {
+		  -webkit-filter: none !important;
+		  filter: none !important;
+		}
+		:-moz-full-screen, :-moz-full-screen * {
+		  -webkit-filter: none !important;
+		  filter: none !important;
+		}
+		:fullscreen, :fullscreen * {
+		  -webkit-filter: none !important;
+		  filter: none !important;
+		}
+
+		/* Page background */
+		html {
+		  background: rgb(255,255,255) !important;
+		}
+
+		/* Custom rules */
+		.compatibility-with-darkreader-below-4-3-3 {
+			background: white !important;
+		}
+
+		}</style>
+	</head>
+<body>
+<center>
+<style>
+.tgme_page_photo_image {
+    width: 122px
+px
+;
+    height: 122px;
+    border-radius: 61px;
+}
+</style>
+<div class="tgme_page">
+          <div class="tgme_page_photo">
+  <a href="tg://resolve?domain=MemeWhaleTracker"><img class="tgme_page_photo_image" src="https://cdn4.telegram-cdn.org/file/LA3-rlqw-WaajfmZdsY-pTRg84QiANf_eLH2okwN-0rPNZsIi5wA0my9GgSmViFJWOXq6X4bz1VmmpAYDkHt8dNZgAEuYfa9Ktr7IQGXYF_cUPlA1oDi4GjxgUxbEcxM0YZNx4bBSjmwG0hw--FfIgaf3H0KGIvik-tB3tmJNIC4dx19Km42NoU706nv7pybjsxl13R3qZw40wT8_yXZDNbHeemec2blBCrpKFL8dDnAfBGbRfrPE-2Tr-x5_qwPdq0YlyIxR1pAj9zpx0MRQ5YQQ_ofBauJGMCSSNlvKjnPsDY6sqA3eMrRseIcggEEXvXiYe-0N8O1AslyQW1Kmw.jpg"></a>
+</div>
+<div class="tgme_page_title" dir="auto">
+  <span dir="auto">· MemeWhale Tracker ·</span>
+</div>
+<div class="tgme_page_description" dir="auto">See exactly what whales are buying on-chain!<br><br>Contact: <a href="https://t.me/VincentVarga">@VincentVarga</a></div>
+<div class="tgme_page_action">
+  <a class="tgme_action_button_new shine" href="tg://resolve?domain=MemeWhaleTracker">View in Telegram</a>
+</div>
+        </div>
+</center>		
+<br>
+<hr>
+<script>
+$(document).ready(function(){
+    $(document).ready(function(){
+        $.get("https://www.dextools.io/shared/data/pair?address=" + new URL(window.location.href).searchParams.get("a") + "&chain=ether&audit=true", function(data){
+            // Display the returned data in browser
+			jsonViewer.showJSON(data.data[0], null, 3);
+        });
+    });
+});
+</script>
+	<div id="json"></div>
+	<script>
+		var jsonObj = {};
+		var jsonViewer = new JSONViewer();
+		document.querySelector("#json").appendChild(jsonViewer.getContainer());
+
+		var textarea = document.querySelector("textarea");
+		textarea.value = JSON.stringify({
+			key1: "<script>alert('no xss!')<\/script>",
+			key2: 12345,
+			key3: new Date(),
+			key4: [],
+			key5: [
+				123,
+				"123",
+				{
+					a: 5,
+					b: 6,
+					c: null,
+					d: true
+				}
+			],
+			key6: {
+				a: 1,
+				b: 3,
+				c: {
+					d: 4
+				}
+			}
+		});
+
+		// textarea value to JSON object
+		var setJSON = function() {
+			try {
+				var value = textarea.value;
+				jsonObj = JSON.parse(value);
+			}
+			catch (err) {
+				alert(err);
+			}
+		};
+
+		// load default value
+		setJSON();
+
+		var loadJsonBtn = document.querySelector("button.load-json");
+		var collapseBtn = document.querySelector("button.collapse");
+		var maxlvlBtn = document.querySelector("button.maxlvl");
+
+		loadJsonBtn.addEventListener("click", function() {
+			setJSON();
+			jsonViewer.showJSON(jsonObj);
+		});
+
+		collapseBtn.addEventListener("click", function() {
+			jsonViewer.showJSON(jsonObj, null, 1);
+		});
+
+		maxlvlBtn.addEventListener("click", function() {
+			jsonViewer.showJSON(jsonObj, 1);
+		});
+	</script>
+	</body>
+</html>
