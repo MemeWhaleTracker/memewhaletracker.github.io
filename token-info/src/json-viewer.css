@@ -1,4 +1,26 @@
-.json-viewer {
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #8f54a0 #1b1b19;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #1b1b19;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #8f54a0;
+    border-radius: 12px;
+    border: 2px solid #1b1b19;
+  }
+ .json-viewer {
 	color: #000;
 	padding-left: 20px;
 	font-family: system-ui;
